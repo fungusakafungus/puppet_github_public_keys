@@ -1,5 +1,3 @@
 source 'https://rubygems.org'
 
-gem 'puppet'
-gem 'rest-client'
-gem 'pry'
+gem 'octokit', '~= 2.7.2'

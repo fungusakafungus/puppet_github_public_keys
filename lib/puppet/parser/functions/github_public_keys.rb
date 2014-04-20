@@ -1,10 +1,10 @@
-require 'json'
-require 'rest-client'
+require 'octokit'
 
 module GithubFunctions
   def get_public_keys gh_user
     raise Puppet::ParseError, "github_public_keys argument '#{gh_user}' does not look like username" unless gh_user =~ /[[:alnum:]-]+/
-    j = JSON.load(RestClient.get "https://api.github.com/users/#{gh_user}/keys")
+    client = Octokit::Client.new
+    j = client.user_keys gh_user
     j.map {|u| u['key']}
   end
 end
